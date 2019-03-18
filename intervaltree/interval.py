@@ -154,7 +154,7 @@ class Interval(namedtuple('IntervalBase', ['begin', 'end', 'data'])):
         :return: hash
         :rtype: Number
         """
-        return hash((self.begin, self.end))
+        return hash((self.begin, self.end, id(self.data)))
 
     def __eq__(self, other):
         """
@@ -167,7 +167,7 @@ class Interval(namedtuple('IntervalBase', ['begin', 'end', 'data'])):
         return (
             self.begin == other.begin and
             self.end == other.end and
-            self.data == other.data
+            id(self.data) == id(other.data)
         )
 
     def __cmp__(self, other):
